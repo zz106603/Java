@@ -9,8 +9,8 @@ public class Team6Projects01 {
 
 		String[][] boardArray = new String[100][5];
 
-		int selectNum;
-		int listNum = 1;
+		int selectNum;	//switch문의 조건문, 입력값
+		int listNum = 1; //게시글의 번호
 		String title;
 		String content;
 		String writer;
@@ -41,7 +41,7 @@ public class Team6Projects01 {
 				System.out.println("---------------------------------------------------");
 
 				for(int i=0; i<boardArray.length; i++) {	//출력
-					if(boardArray[i][0] != null) {
+					if(boardArray[i][0] != null) {	//번호가 존재하면 출력
 						System.out.println(boardArray[i][0] + "\t" +
 								boardArray[i][1] + "\t" +
 								boardArray[i][2] + "\t" +
@@ -63,7 +63,7 @@ public class Team6Projects01 {
 				System.out.print("글쓴이 : ");
 				writer = scan.nextLine();
 
-				String[] newBoard = {
+				String[] newBoard = {	//배열을 생성하고 
 						String.valueOf(listNum),
 						title,
 						content,
@@ -71,19 +71,32 @@ public class Team6Projects01 {
 						String.valueOf(0)
 				};
 
-				for(int i =0;i<boardArray.length;i++) {
-					if(boardArray[i][0] == null) {
+				for(int i =0;i<boardArray.length;i++) {		//삽입
+					if(boardArray[i][0] == null) { //null 위치를 찾아서 삽입
 						boardArray[i] = newBoard;
 						listNum++;
 						break;
 					}
 				}
 				
+				/*
+				 	4
+				 	null ex)5 생성
+				 	null  
+				 	1
+				 	-> 최종 null 밑은 정렬이 되어있기 때문에 처음 null을 만났을때 까지만 정렬을 해주면 됨.
+				 	   따라서 null을 만났을 때는 break로 반복문 종료
+				 		
+				 	결과 :	5
+				 			4
+				 			null
+				 			1
+				 */
 				for(int i=0; i<boardArray.length; i++) {	//정렬
 					if(boardArray[i][0] == null) {
 						break;
 					}
-					for(int j=0; j<i; j++) {
+					for(int j=0; j<i+1; j++) { //현재위치 값과 다음위치 값을 비교하여 교체
 						if(Integer.parseInt(boardArray[i][0]) > Integer.parseInt(boardArray[j][0])) {
 							String[] temp = boardArray[i];
 							boardArray[i] = boardArray[j];
@@ -102,7 +115,7 @@ public class Team6Projects01 {
 				int readNum = Integer.parseInt(scan.nextLine());
 
 				for (int i = 0; i < boardArray.length; i++) {
-					if(boardArray[i][0] == null){
+					if(boardArray[i][0] == null){	//번호를 찾을때까지 반복문 실행
 						continue;
 					}
 					if (readNum == Integer.parseInt(boardArray[i][0])) {
@@ -134,7 +147,7 @@ public class Team6Projects01 {
 				String updateContent;
 				
 				for (int i = 0; i < boardArray.length; i++) {
-					if(boardArray[i][0] == null){
+					if(boardArray[i][0] == null){	//번호를 찾을때까지 반복문 실행
 						continue;
 					}
 					if (updatetNum == Integer.parseInt(boardArray[i][0])) {
@@ -145,6 +158,7 @@ public class Team6Projects01 {
 						System.out.print("변경할 내용: ");
 						updateContent = scan.nextLine();
 						
+						//값이 있을경우에 새로운 값 저장
 						if(updateTitle.length() != 0) {
 							boardArray[i][1] = updateTitle;
 						}
@@ -172,7 +186,7 @@ public class Team6Projects01 {
 				int deleteNum = Integer.parseInt(scan.nextLine());
 
 				for (int i = 0; i < boardArray.length; i++) {
-					if(boardArray[i][0] == null) {
+					if(boardArray[i][0] == null) {	//번호를 찾을때까지 반복문 실행
 						continue;
 					}
 					if (deleteNum == Integer.parseInt(boardArray[i][0])) {
