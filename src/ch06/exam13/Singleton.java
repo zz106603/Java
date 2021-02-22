@@ -6,11 +6,12 @@ public class Singleton {
 	//static을 빼면 인스턴수 변수가 되기 때문에 객체가 선언되어야 함.
 	//따라서 getInstance에서 에러 발생
 	
+	
 	Singleton() {
 		
 	}
 	
-	/*
+	/* 외부에서 객체생성 못하게 막음
 	private Singleton() {
 		
 	}

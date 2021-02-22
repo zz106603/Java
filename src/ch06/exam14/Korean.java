@@ -2,7 +2,7 @@ package ch06.exam14;
 
 public class Korean {
 
-	 final static String nation = "한국";
+	 final static String NATION = "한국";
 	 final String ssn;
 	 
 	 Korean(String ssn){
