@@ -56,13 +56,34 @@ public class Team6Projects01 {
 			case 2:
 				System.out.println("2.생성> ");
 
-				System.out.print("제목 : ");
-				title = scan.nextLine();
-				System.out.print("내용 : ");
-				content = scan.nextLine();
-				System.out.print("글쓴이 : ");
-				writer = scan.nextLine();
-
+				while(true) {
+					System.out.print("제목 : ");
+					title = scan.nextLine();
+					
+					if(title.length() != 0) {
+						break;
+					}
+				}
+				
+				while(true) {
+					System.out.print("내용 : ");
+					content = scan.nextLine();
+					
+					if(content.length() != 0) {
+						break;
+					}
+				}
+				
+				while(true) {
+					System.out.print("글쓴이 : ");
+					writer = scan.nextLine();
+					
+					if(writer.length() != 0) {
+						break;
+					}
+				}
+				
+		
 				String[] newBoard = {	//배열을 생성하고 
 						String.valueOf(listNum),
 						title,
@@ -96,7 +117,7 @@ public class Team6Projects01 {
 					if(boardArray[i][0] == null) {
 						break;
 					}
-					for(int j=0; j<i+1; j++) { //현재위치 값과 다음위치 값을 비교하여 교체
+					for(int j=0; j<i; j++) { //현재위치 값과 다음위치 값을 비교하여 교체
 						if(Integer.parseInt(boardArray[i][0]) > Integer.parseInt(boardArray[j][0])) {
 							String[] temp = boardArray[i];
 							boardArray[i] = boardArray[j];
