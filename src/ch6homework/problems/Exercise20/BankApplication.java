@@ -40,6 +40,8 @@ public class BankApplication {
 		System.out.println("계좌생성");
 		System.out.println("-------");
 
+		scanner.nextLine();
+
 		System.out.print("계좌번호: ");
 		String ano = scanner.nextLine();
 
@@ -67,6 +69,9 @@ public class BankApplication {
 		System.out.println("-------");
 
 		for(int i=0; i<accountArray.length; i++) {
+			if(accountArray[i] == null) {
+				break;
+			}
 			System.out.println(accountArray[i].getAno()+"\t"+accountArray[i].getOwner()+"\t"+accountArray[i].getBalance());
 		}
 	}
@@ -76,16 +81,23 @@ public class BankApplication {
 		System.out.println("-------");
 		System.out.println("예금");
 		System.out.println("-------");
-		
+
+		scanner.nextLine();
 		System.out.print("계좌번호: ");
 		String ano = scanner.nextLine();
-		
-		System.out.print("예금액: ");
-		int inputMoney = Integer.parseInt(scanner.nextLine());
-		
+
 		Account account = findAccount(ano);
-		int result = account.getBalance() + inputMoney;
-		account.setBalance(result);
+
+		if(account.getAno().equals("")) {
+			System.out.println("일치하는 계좌가 없습니다.");
+		}else {
+			System.out.print("예금액: ");
+			int inputMoney = Integer.parseInt(scanner.nextLine());
+
+			int result = account.getBalance() + inputMoney;
+			account.setBalance(result);
+
+		}
 	}
 
 
@@ -94,34 +106,42 @@ public class BankApplication {
 		System.out.println("-------");
 		System.out.println("출금");
 		System.out.println("-------");
-		
+
+		scanner.nextLine();
 		System.out.print("계좌번호: ");
 		String ano = scanner.nextLine();
-		
-		System.out.print("출금액: ");
-		int outputMoney = Integer.parseInt(scanner.nextLine());
-		
+
 		Account account = findAccount(ano);
-		int result = account.getBalance() - outputMoney;
-		account.setBalance(result);
-		
+		if(account.getAno().equals("")) {
+			System.out.println("일치하는 계좌가 없습니다.");
+		}else {
+			System.out.print("출금액: ");
+			int outputMoney = Integer.parseInt(scanner.nextLine());
+
+			int result = account.getBalance() - outputMoney;
+			account.setBalance(result);
+
+		}
 	}
 
 	//Account 배열에서 ano와 동일한 Account객체 찾기
 	//deposit, withdraw 호출해서 이용
 	private static Account findAccount(String ano) {
-		
+
+		Account account = new Account("", "", 0);
+
 		for(int i=0; i<accountArray.length; i++) {
+			if(accountArray[i] == null) {
+				break;
+			}
 			if(accountArray[i].getAno().equals(ano)) {
-				Account account =  accountArray[i];
+				account = accountArray[i];
 			}
 		}
-		
+
 		return account;
-		
-		
-		
-		
+
+
 	}
 
 
