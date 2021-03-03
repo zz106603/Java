@@ -1,0 +1,21 @@
+package ch15.exam04;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Example2 {
+
+	public static void main(String[] args) {
+		
+		Map<User, Board> map = new HashMap<>(); 
+		
+		map.put(new User("winter", "¥ ∞‹øÔ"), new Board(1, "¥ ∞‹øÔ"));
+		map.put(new User("winter", "∫Ω"), new Board(2, "¿‘√·"));
+		
+		Board board = map.get(new User("winter", null));
+		System.out.println(board.getBno());
+		System.out.println(board.getTitle());
+
+	}
+
+}
